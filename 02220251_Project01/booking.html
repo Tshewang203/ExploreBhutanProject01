@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Bhutan Adventure - Explore Bhutan</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">Explore Bhutan</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="travel-tips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="booking.html">Book Now</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <!-- Cost Calculator Section -->
+    <section class="calculator-section mt-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Estimate Your Trip Cost</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="calculator-form">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Duration (Days)</label>
+                                <input type="number" class="form-control" id="tripDays" min="1" value="5">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Number of Travelers</label>
+                                <input type="number" class="form-control" id="travelers" min="1" value="2">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Season</label>
+                                <select class="form-select" id="season">
+                                    <option value="peak">Peak Season (Mar-May, Sep-Nov)</option>
+                                    <option value="offpeak">Off-Peak Season (Dec-Feb, Jun-Aug)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Accommodation Type</label>
+                                <select class="form-select" id="accommodationType">
+                                    <option value="3star">3-Star Hotel</option>
+                                    <option value="4star">4-Star Hotel</option>
+                                    <option value="5star">5-Star Hotel</option>
+                                    <option value="luxury">Luxury Resort</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Additional Services</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="guideService">
+                                <label class="form-check-label">Private Guide (+$50/day)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="transportation">
+                                <label class="form-check-label">Private Transportation (+$80/day)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="activities">
+                                <label class="form-check-label">Cultural Activities & Tours (+$40/day/person)</label>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary w-100" onclick="calculateCost()">Calculate Cost</button>
+                    </div>
+
+                    <div class="result-card mt-4" id="costResult" style="display: none;">
+                        <h3 class="mb-4">Estimated Trip Cost</h3>
+                        <div id="costBreakdown"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Booking Section -->
+    <section class="booking-section py-5 mt-5">
+        <div class="container">
+            <h1 class="text-center mb-5">Book Your Bhutan Adventure</h1>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <form class="booking-form p-4 rounded shadow">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="arrivalDate" class="form-label">Arrival Date</label>
+                                <input type="date" class="form-control" id="arrivalDate" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="departureDate" class="form-label">Departure Date</label>
+                                <input type="date" class="form-control" id="departureDate" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tourPackage" class="form-label">Select Tour Package</label>
+                            <select class="form-select" id="tourPackage" required>
+                                <option value="">Choose a package...</option>
+                                <option value="cultural">Cultural Heritage Tour (7 Days)</option>
+                                <option value="adventure">Adventure Trek Package (10 Days)</option>
+                                <option value="spiritual">Spiritual Journey (5 Days)</option>
+                                <option value="festival">Festival Special Tour (8 Days)</option>
+                            </select>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="adults" class="form-label">Number of Adults</label>
+                                <input type="number" class="form-control" id="adults" min="1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="children" class="form-label">Number of Children</label>
+                                <input type="number" class="form-control" id="children" min="0">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="specialRequests" class="form-label">Special Requests</label>
+                            <textarea class="form-control" id="specialRequests" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Book Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <script>
+        function calculateCost() {
+            const days = parseInt(document.getElementById('tripDays').value);
+            const travelers = parseInt(document.getElementById('travelers').value);
+            const season = document.getElementById('season').value;
+            const accommodation = document.getElementById('accommodationType').value;
+            const privateGuide = document.getElementById('guideService').checked;
+            const privateTransport = document.getElementById('transportation').checked;
+            const activities = document.getElementById('activities').checked;
+
+            // Base rates
+            let baseRate = season === 'peak' ? 250 : 200;
+            let accommodationRate;
+
+            switch(accommodation) {
+                case '3star': accommodationRate = 100; break;
+                case '4star': accommodationRate = 150; break;
+                case '5star': accommodationRate = 250; break;
+                case 'luxury': accommodationRate = 400; break;
+            }
+
+            // Calculate costs
+            const baseCost = baseRate * days * travelers;
+            const accommodationCost = accommodationRate * days * travelers;
+            const guideCost = privateGuide ? 50 * days : 0;
+            const transportCost = privateTransport ? 80 * days : 0;
+            const activitiesCost = activities ? 40 * days * travelers : 0;
+
+            const totalCost = baseCost + accommodationCost + guideCost + transportCost + activitiesCost;
+
+            // Display results
+            const resultDiv = document.getElementById('costResult');
+            const breakdownDiv = document.getElementById('costBreakdown');
+            
+            breakdownDiv.innerHTML = `
+                <div class="cost-item">
+                    <p>Base Package Cost: $${baseCost}</p>
+                    <p>Accommodation: $${accommodationCost}</p>
+                    ${privateGuide ? `<p>Private Guide: $${guideCost}</p>` : ''}
+                    ${privateTransport ? `<p>Private Transportation: $${transportCost}</p>` : ''}
+                    ${activities ? `<p>Activities & Tours: $${activitiesCost}</p>` : ''}
+                    <hr>
+                    <h4>Total Estimated Cost: $${totalCost}</h4>
+                    <p class="text-muted small">*Prices are estimates and may vary based on availability and season</p>
+                </div>
+            `;
+            
+            resultDiv.style.display = 'block';
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>About Bhutan</h5>
+                    <p>Discover the last Shangri-La, where ancient traditions blend seamlessly with modern progress.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="destinations.html" class="text-light text-decoration-none">Popular Destinations</a></li>
+                        <li><a href="travel-tips.html" class="text-light text-decoration-none">Travel Guide</a></li>
+                        <li><a href="blog.html" class="text-light text-decoration-none">Travel Stories</a></li>
+                        <li><a href="booking.html" class="text-light text-decoration-none">Book Now</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li>📍 Thimphu, Bhutan</li>
+                        <li>📧 info@explorebhutan.com</li>
+                        <li>📞 +975 2 123456</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 Explore Bhutan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
